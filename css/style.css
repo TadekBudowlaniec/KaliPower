@@ -1,0 +1,1516 @@
+/* Laboratorium 2: Podstawowe formatowanie CSS z modelem pudełkowym */
+/* Definicja zmiennych CSS - kolory używane w całej aplikacji */
+:root {
+    --navy: #1a2963;      /* Ciemnoniebieski kolor główny */
+    --burgundy: #800020;  /* Kolor bordowy - tło sekcji */
+    --yellow: #ffd700;    /* Kolor złoty - akcenty i przyciski */
+    --black: #000;        /* Kolor czarny - tekst */
+    --white: #fff;        /* Kolor biały - tekst na ciemnym tle */
+    --light-gray: #f4f4f4; /* Jasnoszary - tło elementów */
+}
+
+/* Resetowanie domyślnych stylów przeglądarki */
+* {
+    margin: 0;            /* Usunięcie domyślnych marginesów */
+    padding: 0;           /* Usunięcie domyślnych wypełnień */
+    box-sizing: border-box; /* Padding i border wliczane do szerokości elementu */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Czcionka systemowa */
+}
+
+/* Podstawowe style dla całej strony */
+body {
+    background-color: var(--burgundy);
+    color: var(--black);
+    line-height: 1.6;     /* Odstęp między liniami tekstu */
+}
+
+/* Laboratorium 3: Pozycjonowanie elementów na stronie za pomocą CSS */
+/* Kontener ograniczający szerokość zawartości */
+.container {
+    width: 100%;
+    max-width: 1200px;    /* Maksymalna szerokość na dużych ekranach */
+    margin: 0 auto;       /* Wycentrowanie kontenera */
+    padding: 0 15px;      /* Odstęp od krawędzi na małych ekranach */
+}
+
+/* Nagłówek strony - stały na górze */
+header {
+    background-color: var(--navy);
+    color: var(--white);
+    padding: 16px 0;
+    position: fixed;      /* Przyklejenie nagłówka do góry */
+    width: 100%;
+    top: 0;
+    z-index: 100;        /* Zapewnia, że nagłówek będzie zawsze na wierzchu */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Cień pod nagłówkiem */
+}
+
+/* Nawigacja - flexbox do układu elementów w poziomie */
+nav {
+    display: flex;        /* Użycie flexbox do układu elementów */
+    justify-content: space-between; /* Rozłożenie elementów na końcach */
+    align-items: center;  /* Wycentrowanie elementów w pionie */
+}
+
+/* Logo - wyróżniony element nawigacji */
+.logo {
+    font-size: 28.8px;
+    font-weight: bold;
+    color: var(--yellow); /* Złoty kolor dla wyróżnienia */
+}
+
+/* Laboratorium 3: Kod dla stylu menu głównego */
+.main-menu {
+    display: flex;        /* Poziome ułożenie elementów menu */
+    list-style: none;     /* Usunięcie punktów listy */
+}
+
+.main-menu li {
+    margin-left: 24px;    /* Odstęp między elementami menu */
+}
+
+/* Style linków w menu */
+.main-menu a {
+    color: var(--white);
+    text-decoration: none; /* Usunięcie podkreślenia */
+    font-weight: 600;
+    transition: color 0.3s; /* Płynna zmiana koloru przy najechaniu */
+}
+
+/* Efekt hover na linkach menu */
+.main-menu a:hover {
+    color: var(--yellow); /* Zmiana koloru przy najechaniu */
+}
+
+/* Laboratorium 3: Przycisk menu mobilnego - domyślnie ukryty */
+.mobile-menu-btn {
+    display: none;        /* Ukrycie na dużych ekranach */
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 24px;
+    cursor: pointer;      /* Kursor wskazujący na możliwość kliknięcia */
+}
+
+/* Główna zawartość strony */
+main {
+    margin-top: 80px;     /* Odstęp od stałego nagłówka */
+    min-height: calc(100vh - 160px); /* Minimalna wysokość = wysokość ekranu - (nagłówek + stopka) */
+}
+
+/* Sekcja hero - pełnoekranowy baner powitalny */
+.hero {
+    background: linear-gradient(rgba(128, 0, 32, 0.9), rgba(128, 0, 32, 0.9)), 
+                url('/api/placeholder/1200/800') center/cover no-repeat;
+    height: 100vh;        /* Wysokość równa wysokości ekranu */
+    display: flex;        /* Flexbox do centrowania zawartości */
+    align-items: center;  /* Centrowanie w pionie */
+    justify-content: center; /* Centrowanie w poziomie */
+    text-align: center;
+    color: var(--white);
+    position: relative;   /* Kontekst pozycjonowania dla elementów potomnych */
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 0 32px;
+}
+
+.hero h1 {
+    font-size: 64px;
+    margin-bottom: 24px;
+    color: var(--yellow);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+    font-size: 22.4px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--yellow);
+    color: var(--yellow);
+}
+
+.btn-outline:hover {
+    background: var(--yellow);
+    color: var(--navy);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12.8px 24px;
+    background-color: var(--burgundy);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #660019;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 32px;
+    color: var(--navy);
+}
+
+/* Sekcja ćwiczeń */
+.exercises {
+    background-color: var(--burgundy);
+    color: var(--white);
+    padding: 32px 0;
+}
+
+.exercises .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.exercises .section-title {
+    color: var(--yellow);
+}
+
+.exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 32px;
+    width: 100%;
+}
+
+.exercise-card {
+    background-color: var(--navy);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.exercise-card:hover {
+    transform: translateY(-5px);
+}
+
+.exercise-img {
+    width: 100%;
+    height: 250px;
+    background-color: var(--navy);
+    background-size: cover;
+    background-position: center;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+}
+
+.exercise-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.exercise-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.exercise-content h3 {
+    color: var(--yellow);
+    margin-bottom: 8px;
+    font-size: 20.8px;
+}
+
+.exercise-level {
+    color: var(--yellow);
+    font-size: 14.4px;
+    margin-bottom: 12.8px;
+    font-weight: 500;
+}
+
+.exercise-description {
+    margin-bottom: 16px;
+    flex-grow: 1;
+    line-height: 1.6;
+}
+
+.exercise-details-btn {
+    margin-top: auto;
+    width: 100%;
+    padding: 12.8px 20px;
+    background: linear-gradient(45deg, var(--yellow), #ffed4a);
+    color: var(--navy);
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    text-align: center;
+    text-decoration: none;
+}
+
+.exercise-details-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+    background: linear-gradient(45deg, #ffed4a, var(--yellow));
+}
+
+.exercise-details-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+}
+
+/* Sekcja formularza planu treningowego */
+.training-plan {
+    background-color: var(--burgundy);
+    color: var(--white);
+    padding: 48px 0;
+}
+
+.training-plan .section-title {
+    color: var(--yellow);
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 32px;
+    background-color: var(--navy);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: var(--white);
+}
+
+/* Style formularzy */
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.form-group button[type="submit"] {
+    margin-top: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12.8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--yellow);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.radio-group, .checkbox-group {
+    margin: 8px 0;
+    color: var(--white);
+}
+
+.radio-group label, .checkbox-group label {
+    color: var(--white);
+}
+
+.error-message {
+    color: #ff6b6b;
+    font-size: 13.6px;
+    margin-top: 4.8px;
+    display: none;
+}
+
+/* Sekcja sklepu */
+.store {
+    background-color: var(--burgundy);
+    padding: 48px 0;
+    color: var(--white);
+}
+
+.store .section-title {
+    color: var(--yellow);
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+.product-card {
+    background-color: var(--navy);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.product-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.product-title {
+    color: var(--yellow);
+    margin-bottom: 8px;
+    font-size: 20.8px;
+}
+
+.product-description {
+    margin-bottom: 16px;
+    flex-grow: 1;
+}
+
+.product-price {
+    color: var(--yellow);
+    font-weight: bold;
+    font-size: 19.2px;
+    margin-bottom: 16px;
+}
+
+.add-to-cart, .btn {
+    margin-top: auto;
+    width: 100%;
+    padding: 12.8px 20px;
+    background: linear-gradient(45deg, var(--yellow), #ffed4a);
+    color: var(--navy);
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    text-align: center;
+    text-decoration: none;
+}
+/* Laboratorium 5: Specjalna obsługa przycisku - po najechaniu na niego  */
+.add-to-cart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+    background: linear-gradient(45deg, #ffed4a, var(--yellow));
+}
+
+.add-to-cart:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+}
+
+/* Sekcja koszyka */
+.cart-section {
+    background-color: var(--navy);
+    padding: 32px;
+    border-radius: 8px;
+    margin-top: 32px;
+}
+
+.cart-section h3 {
+    color: var(--yellow);
+    margin-bottom: 24px;
+    font-size: 24px;
+}
+
+.cart-items {
+    margin: 24px 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.cart-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cart-item-name {
+    font-weight: 600;
+    color: var(--yellow);
+}
+
+.cart-item-price {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.cart-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4.8px;
+    border-radius: 4px;
+}
+
+.quantity-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: var(--white);
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19.2px;
+    transition: all 0.3s ease;
+}
+
+.quantity-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.quantity-btn:active {
+    transform: scale(0.95);
+}
+
+.quantity-input {
+    width: 40px;
+    text-align: center;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    padding: 3.2px;
+    border-radius: 4px;
+    font-size: 14.4px;
+}
+
+.quantity-input::-webkit-inner-spin-button,
+.quantity-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.quantity-input:focus {
+    outline: none;
+    border-color: var(--yellow);
+}
+
+.cart-item-total {
+    font-weight: 600;
+    color: var(--yellow);
+    min-width: 80px;
+    text-align: right;
+}
+
+.remove-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    padding: 4.8px 12.8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.remove-item:hover {
+    background: rgba(255, 0, 0, 0.2);
+    border-color: rgba(255, 0, 0, 0.3);
+}
+
+.cart-total {
+    margin-top: 24px;
+    text-align: right;
+    font-weight: bold;
+    color: var(--yellow);
+    font-size: 19.2px;
+}
+
+#checkout {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 24px auto 0;
+    background: linear-gradient(45deg, var(--yellow), #ffed4a);
+    color: var(--navy);
+    border: none;
+    border-radius: 25px;
+    padding: 16px 32px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+#checkout:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+    background: linear-gradient(45deg, #ffed4a, var(--yellow));
+}
+
+#checkout:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+}
+/* Laboratorium 5: Wykorzystanie zapytania o media */
+@media screen and (max-width: 768px) {
+    .cart-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .cart-item-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .quantity-controls {
+        margin: 0 auto;
+    }
+
+    .cart-item-total {
+        text-align: center;
+    }
+}
+
+/* Sekcja o nas */
+.about {
+    background-color: var(--burgundy);
+    padding: 48px 0;
+    color: var(--white);
+}
+
+.about .section-title {
+    color: var(--yellow);
+}
+
+.about-content {
+    display: flex;
+    align-items: stretch;
+    gap: 32px;
+}
+
+.about-text, .about-gallery {
+    flex: 1;
+    padding: 32px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+}
+
+.about-text {
+    justify-content: flex-start;
+}
+
+.about-gallery {
+    justify-content: space-between;
+}
+
+.about-text h3, .about-gallery h3 {
+    color: var(--yellow);
+    margin-bottom: 24px;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: auto;
+}
+
+.gallery-grid a {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    aspect-ratio: 1;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-grid a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-grid a:hover img {
+    transform: scale(1.05);
+}
+
+/* Sekcja kontaktowa */
+.contact {
+    background-color: var(--burgundy);
+    color: var(--white);
+    padding: 48px 0;
+}
+
+.contact .section-title {
+    color: var(--yellow);
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 32px;
+}
+
+.contact-info {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 32px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-info h3 {
+    color: var(--yellow);
+    margin-bottom: 24px;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    color: var(--white);
+}
+
+.contact-info p i {
+    color: var(--yellow);
+    font-size: 19.2px;
+    width: 20px;
+}
+
+.contact-form {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 32px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-form h3 {
+    color: var(--yellow);
+    margin-bottom: 24px;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@media screen and (max-width: 992px) {
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-info,
+    .contact-form {
+        padding: 1.5rem;
+    }
+}
+/* Laboratorium 5: Responsywna strona internetowa */
+@media screen and (max-width: 576px) {
+    .contact-info,
+    .contact-form {
+        padding: 1rem;
+    }
+
+    .contact-info h3,
+    .contact-form h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Stopka */
+footer {
+    background-color: var(--navy);
+    color: var(--white);
+    padding: 32px 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.social-links {
+    display: flex;
+    gap: 16px;
+}
+
+.social-link {
+    color: var(--white);
+    font-size: 24px;
+    transition: color 0.3s;
+}
+.social-link:hover {
+    color: var(--yellow);
+}
+
+.copyright {
+    margin-top: 24px;
+    font-size: 14.4px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Mapa geolokalizacji */
+#map {
+    display: none;
+}
+
+/* Zapytania o media dla responsywnego projektu */
+@media screen and (max-width: 992px) {
+    .exercise-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .products {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .about-content {
+        flex-direction: column;
+    }
+
+    .about-gallery {
+        width: 100%;
+    }
+
+    .contact-content {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .exercise-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .exercise-content {
+        padding: 20px;
+    }
+
+    .exercise-img {
+        height: 180px;
+    }
+}
+
+/* Modal ćwiczeń */
+.exercise-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 32px;
+    overflow-y: auto;
+}
+
+.exercise-modal {
+    background-color: var(--navy);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 1200px;
+    max-height: 90vh;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.exercise-modal-content {
+    padding: 32px;
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+.exercise-modal h2 {
+    color: var(--yellow);
+    margin-bottom: 32px;
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.exercise-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 24px;
+}
+
+.exercise-info {
+    color: var(--white);
+}
+
+.info-section {
+    margin-bottom: 32px;
+}
+
+.info-section h3 {
+    color: var(--yellow);
+    font-size: 19.2px;
+    margin-bottom: 12.8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-section p {
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.exercise-video {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* Proporcje 16:9 */
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.exercise-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--white);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-modal:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+@media screen and (max-width: 992px) {
+    .exercise-details-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .exercise-modal-content {
+        padding: 1.5rem;
+    }
+
+    .exercise-modal h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .info-section {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .exercise-modal-overlay {
+        padding: 1rem;
+    }
+
+    .exercise-modal-content {
+        padding: 1rem;
+    }
+
+    .exercise-modal h2 {
+        font-size: 1.5rem;
+    }
+
+    .close-modal {
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Zaawansowane style formularzy */
+.fancy-form {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border-radius: 15px;
+    padding: 32px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-header h3 {
+    color: var(--yellow);
+    font-size: 28.8px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-header p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 16px;
+    color: var(--yellow);
+    font-size: 19.2px;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.input-wrapper .form-control {
+    width: 100%;
+    padding: 12.8px 16px 12.8px 48px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    color: var(--white);
+    font-size: 16px;
+}
+
+.input-wrapper select.form-control {
+    color: var(--white);
+    padding-left: 48px;
+}
+
+.input-wrapper select.form-control option {
+    color: var(--black);
+    background: var(--white);
+    padding-left: 48px;
+}       
+
+.input-wrapper .form-control:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--yellow);
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+    outline: none;
+}
+
+.input-wrapper .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.input-wrapper textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.radio-group-container,
+.checkbox-group-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.radio-group,
+.checkbox-group {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.radio-group:hover,
+.checkbox-group:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.radio-group input[type="radio"],
+.checkbox-group input[type="checkbox"] {
+    display: none;
+}
+
+.radio-group label,
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: var(--white);
+    transition: all 0.3s ease;
+    margin: 0;
+    font-weight: normal;
+}
+
+.radio-group label i,
+.checkbox-group label i {
+    color: var(--yellow);
+    font-size: 17.6px;
+    transition: all 0.3s ease;
+}
+
+.radio-group input[type="radio"]:checked + label,
+.checkbox-group input[type="checkbox"]:checked + label {
+    color: var(--yellow);
+}
+
+.radio-group input[type="radio"]:checked + label i,
+.checkbox-group input[type="checkbox"]:checked + label i {
+    transform: scale(1.2);
+}
+
+.radio-group input[type="radio"]:checked ~ .radio-group,
+.checkbox-group input[type="checkbox"]:checked ~ .checkbox-group {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: var(--yellow);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(45deg, var(--yellow), #ffed4a);
+    color: var(--navy);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    margin-top: 32px;
+    cursor: pointer;
+}
+
+.submit-btn i {
+    font-size: 19.2px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    background: linear-gradient(45deg, #ffed4a, var(--yellow));
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.error-message {
+    color: #ff6b6b;
+    font-size: 13.6px;
+    margin-top: 8px;
+    padding-left: 8px;
+    border-left: 2px solid #ff6b6b;
+    display: none;
+}
+
+/* Style kontenera formularza */
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px;
+    background-color: var(--navy);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 768px) {
+    .fancy-form {
+        padding: 24px;
+    }
+
+    .form-header h3 {
+        font-size: 24px;
+    }
+
+    .radio-group-container,
+    .checkbox-group-container {
+        grid-template-columns: 1fr;
+    }
+
+    .form-container {
+        padding: 16px;
+    }
+}
+
+.features {
+    background-color: var(--burgundy);
+    color: var(--white);
+    padding: 96px 0;
+}
+
+.features .section-title {
+    color: var(--yellow);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    margin-top: 48px;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 40px 32px;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-icon {
+    font-size: 48px;
+    color: var(--yellow);
+    margin-bottom: 24px;
+}
+
+.feature-card h3 {
+    color: var(--yellow);
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+/* Sekcja korzyści */
+.benefits {
+    background-color: var(--navy);
+    color: var(--white);
+    padding: 96px 0;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-top: 48px;
+}
+
+.benefit-item {
+    text-align: center;
+    padding: 32px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.benefit-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.benefit-item i {
+    font-size: 40px;
+    color: var(--yellow);
+    margin-bottom: 16px;
+}
+
+.benefit-item h3 {
+    color: var(--yellow);
+    margin-bottom: 16px;
+    font-size: 20.8px;
+}
+
+/* Sekcja CTA */
+.cta-section {
+    background: linear-gradient(rgba(128, 0, 32, 0.9), rgba(128, 0, 32, 0.9)), url('/api/placeholder/1200/400') center/cover no-repeat;
+    padding: 96px 0;
+    color: var(--white);
+    text-align: center;
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    font-size: 48px;
+    color: var(--yellow);
+    margin-bottom: 16px;
+}
+
+.cta-content p {
+    font-size: 19.2px;
+    margin-bottom: 32px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+}
+
+/* Sekcja opinii */
+.testimonials {
+    background-color: var(--navy);
+    color: var(--white);
+    padding: 96px 0;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 48px;
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 32px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.testimonial-content {
+    margin-bottom: 24px;
+}
+
+.testimonial-content i {
+    color: var(--yellow);
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+.testimonial-content p {
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.testimonial-author h4 {
+    color: var(--yellow);
+    margin-bottom: 0.3rem;
+}
+
+.testimonial-author p {
+    font-size: 14.4px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsywny projekt */
+@media screen and (max-width: 992px) {
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .features-grid,
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .hero-subtitle {
+        font-size: 19.2px;
+    }
+
+    .hero-buttons,
+    .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .features-grid,
+    .benefits-grid,
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-content h2 {
+        font-size: 40px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .feature-card,
+    .benefit-item,
+    .testimonial-card {
+        padding: 24px;
+    }
+}
+
+/* Responsywność galerii */
+@media screen and (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+}
